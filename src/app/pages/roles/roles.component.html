@@ -1,0 +1,103 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+
+    <!-- Encabezado -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+                <div class="col-sm-6">
+                    <h1>Roles</h1>
+                </div>
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="dashboard">Home</a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+                            Roles
+                        </li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="card">
+
+                <!-- Encabezado de tarjeta -->
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Listado de Roles del sistema
+                    </h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+
+                            <i class="fas fa-minus"></i>
+
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Cuerpo -->
+                <div class="card-body">
+
+                    <!-- Herramientas -->
+                    <div class="table-toolbar">
+
+                        <!-- Filtro general -->
+                        <mat-form-field appearance="outline" class="filter-field">
+
+                            <mat-label>Buscar Roles</mat-label>
+
+                            <input matInput  placeholder="Nombre, Descripcion..." #input>
+
+                            <button  matSuffix mat-icon-button aria-label="Limpiar filtro"
+                              >
+
+                                <i class="fas fa-times"></i>
+
+                            </button>
+
+                        </mat-form-field>
+
+                        <!-- Agregar: roles 1 y 2 -->
+                   
+
+                            <button type="button" class="btn btn-primary" >
+
+                                <i class="fas fa-plus"></i>
+                                Agregar Roles
+
+                            </button>
+
+                       
+
+                    </div>
+
+
+                    <!-- Tabla -->
+                
+
+                 
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+<app-fotter></app-fotter>

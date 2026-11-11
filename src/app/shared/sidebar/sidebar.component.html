@@ -1,0 +1,105 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/dashboard" class="brand-link">
+        <img src="assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
+
+
+
+        <span class="brand-text font-weight-light">Prueba Tecnica</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="assets/imagenes/usuario.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+
+            <div class="info">
+                <a href="#" style="color:#FFFFFF;font-weight: bold;" class="d-block"> {{perusud.roles.rolName}} </a>
+
+            </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+
+
+
+                <ng-container *ngIf="esPermitidoAdmin()">
+                    <li class="nav-item">
+
+                        <a class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Gestión <i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a routerLink="/dashboard/users" class="nav-link">
+                                    <i class="fa fa-users"></i>
+                                    <p> Users </p>
+
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a routerLink="/dashboard/roles" class="nav-link">
+                                    <i class="fa fa-users"></i>
+                                    <p> Roles </p>
+
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a routerLink="/dashboard/tasks" class="nav-link">
+                                    <i class="fa fa-users"></i>
+                                    <p>Tasks </p>
+
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ng-container>
+
+                <ng-container *ngIf="esPerfilPermitido()">
+                    <li class="nav-item">
+
+                        <a class="nav-link">
+                            <i class="fa fa-server"></i>
+                            <p> Gestion </p>
+                            <i class="fas fa-angle-left right"></i>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a routerLink="/dashboard/tasks" class="nav-link">
+                                    <i class="fa fa-rocket"></i>
+                                    <p> Tasks </p>
+                                </a>
+                            </li>
+                        </ul>
+
+
+                    </li>
+                </ng-container>
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+

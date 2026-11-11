@@ -1,0 +1,115 @@
+<form [formGroup]="usersForm" (ngSubmit)="onSubmit()">
+
+    <div class="container-fluid">
+
+        <h2 class="text-center mt-3 mb-4">
+            <b>Editar Usuario</b>
+        </h2>
+
+        <div class="row g-3">
+
+            <!-- Nombre -->
+            <div class="col-md-6">
+
+                <label for="usuNames" class="form-label">
+                    Nombre completo
+                </label>
+
+                <input type="text" class="form-control" id="usuNames" formControlName="usuNames"
+                    placeholder="Nombre completo">
+
+            </div>
+
+            <!-- Correo -->
+            <div class="col-md-6">
+
+                <label for="usuEmail" class="form-label">
+                    Correo electrónico
+                </label>
+
+                <input type="email" class="form-control" id="usuEmail" formControlName="usuEmail"
+                    placeholder="Correo electrónico">
+
+            </div>
+
+            <!-- Contraseña -->
+            <div class="col-md-6">
+
+                <label for="usuPassword" class="form-label">
+                    Nueva contraseña
+                </label>
+
+                <input type="password" class="form-control" id="usuPassword" formControlName="usuPassword"
+                    placeholder="Dejar vacío para conservar la actual">
+
+            </div>
+
+            <!-- Perfil -->
+            <div class="col-md-6">
+
+                <label for="usuRolId" class="form-label">
+                    Perfil
+                </label>
+
+                <select class="form-select" id="usuRolId" formControlName="usuRolId" style="width: 100%; height: 36px;">
+
+                    <option [ngValue]="null">
+                        Seleccione un rol
+                    </option>
+
+                    <option *ngFor="let item of listroles" [ngValue]="item.rolId">
+
+                        {{ item.rolName }}
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Estado -->
+            <div class="col-md-6">
+
+                <label for="usuIsActive" class="form-label">
+                    Estado
+                </label>
+
+                <select class="form-select" id="usuIsActive" formControlName="usuIsActive"
+                    style="width: 100%; height: 36px;">
+
+                    <option [ngValue]="true">
+                        Activo
+                    </option>
+
+                    <option [ngValue]="false">
+                        Inactivo
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Botones -->
+            <div class="col-12 d-flex justify-content-center align-items-center gap-4 mt-5">
+
+                <button type="button" class="btn btn-primary" (click)="cerrarModal()" style="margin: 0% 4% 2% 0%">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit" class="btn btn-success" [disabled]="loading || usersForm.invalid"
+                    style="margin: 0% 4% 2% 0%">
+
+                    {{ loading ? 'Actualizando...' : 'Actualizar' }}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+

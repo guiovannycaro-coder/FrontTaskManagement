@@ -1,0 +1,161 @@
+<form [formGroup]="tasksForm" (ngSubmit)="onSubmit()">
+    <div class="container-fluid">
+
+        <h2 class="text-center mt-3 mb-4">
+            <b>Nueva Tarea</b>
+        </h2>
+
+        <div class="row g-3">
+
+            <!-- Título -->
+            <div class="col-md-6">
+                <label for="taskTitle" class="form-label">
+                    Título
+                </label>
+
+                <input type="text" class="form-control" id="taskTitle" formControlName="taskTitle"
+                    placeholder="Título de la tarea">
+            </div>
+
+            <!-- Descripción -->
+            <div class="col-md-6">
+                <label for="taskDescription" class="form-label">
+                    Descripción
+                </label>
+
+                <textarea class="form-control" id="taskDescription" formControlName="taskDescription"
+                    placeholder="Descripción de la tarea" rows="2">
+                </textarea>
+            </div>
+
+            <!-- Estado -->
+            <div class="col-md-6">
+                <label for="taskStatus" class="form-label">
+                    Estado
+                </label>
+
+                <select class="form-select" id="taskStatus" formControlName="taskStatus">
+
+                    <option value="Pending">Pendiente</option>
+                    <option value="InProgress">En progreso</option>
+                    <option value="Done">Finalizada</option>
+
+                </select>
+            </div>
+
+            <!-- Prioridad -->
+            <div class="col-md-6">
+                <label for="priority" class="form-label">
+                    Prioridad
+                </label>
+
+                <select class="form-select" id="priority" formControlName="priority">
+
+                    <option value="Low">Baja</option>
+                    <option value="Medium">Media</option>
+                    <option value="High">Alta</option>
+
+                </select>
+            </div>
+
+            <!-- Categoría -->
+            <div class="col-md-6">
+                <label for="category" class="form-label">
+                    Categoría
+                </label>
+
+                <select class="form-select" id="category" formControlName="category">
+
+                    <option value="Backend">Backend</option>
+                    <option value="Frontend">Frontend</option>
+                    <option value="General">General</option>
+                    <option value="Security">Security</option>
+
+                </select>
+            </div>
+
+            <!-- Horas estimadas -->
+            <div class="col-md-6">
+                <label for="estimatedHours" class="form-label">
+                    Horas estimadas
+                </label>
+
+                <input type="number" class="form-control" id="estimatedHours" formControlName="estimatedHours" min="1"
+                    placeholder="Cantidad de horas">
+            </div>
+
+            <!-- Usuarios asignados -->
+            <div class="col-12 mt-3">
+
+                <label class="form-label fw-bold">
+                    Usuarios asignados
+                </label>
+
+                <!-- Cargando usuarios -->
+                <div *ngIf="loadingUsuarios" class="text-muted">
+                    Cargando usuarios...
+                </div>
+
+                <!-- Lista de usuarios -->
+                <div class="row" *ngIf="!loadingUsuarios && usuarios.length > 0">
+
+                    <div class="col-md-6 mb-2" *ngFor="let usuario of usuarios">
+
+                        <div class="form-check">
+
+                            <input class="form-check-input" type="checkbox" [id]="'usuario-' + usuario.usuId"
+                                [checked]="usersIds.includes(usuario.usuId)"
+                                (change)="actualizarSeleccionUsuario(usuario.usuId, $event)">
+
+                            <label class="form-check-label" [for]="'usuario-' + usuario.usuId">
+
+                                {{ usuario.usuNames }}
+
+                                <small class="text-muted">
+                                    ({{ usuario.usuEmail }})
+                                </small>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- No hay usuarios -->
+                <div *ngIf="!loadingUsuarios && usuarios.length === 0" class="alert alert-warning mt-2">
+
+                    No se encontraron usuarios disponibles.
+
+                </div>
+
+                <!-- Cantidad de usuarios seleccionados -->
+                <small class="text-muted">
+                    Usuarios seleccionados: {{ usersIds.length }}
+                </small>
+
+            </div>
+
+            <!-- Botones -->
+            <div class="col-12 d-flex justify-content-center align-items-center gap-4 mt-5">
+
+                <button type="button" class="btn btn-primary" mat-dialog-close style="margin: 0% 4% 2% 0%">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit" class="btn btn-success"
+                    [disabled]="loading || loadingUsuarios || tasksForm.invalid || usersIds.length === 0"
+                    style="margin: 0% 4% 2% 0%">
+
+                    {{ loading ? 'Guardando...' : 'Guardar' }}
+
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</form>
